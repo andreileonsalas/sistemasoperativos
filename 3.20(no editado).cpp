@@ -6,7 +6,7 @@
 #define MAX_PID 3000
 #define cb CHAR_BIT
 
-int sz = MAX_PID - MIN_PID + 1;
+int sz = Maximo - Minimo + 1;
 
 unsigned char *b;
 
@@ -50,9 +50,9 @@ int allocate_pid() {
         pid = b[i/cb] & (1 << (i & (cb-1)));
         }
 
-    if (i+MIN_PID > MAX_PID) return -1;
+    if (i+Minimo > Maximo) return -1;
     b[i/cb] |= 1 << (i & (cb-1));
-    return i+MIN_PID;
+    return i+Minimo;
 }
 
 /* Releases a pid */
@@ -61,6 +61,6 @@ void release_pid(int pid) {
         printf("\nInvalid PID: It should lie between 500 and 3000.");
         return;
     }
-    int i = pid - MIN_PID;
+    int i = pid - Minimo;
     b[i/cb] &= ~(1 << (i & (cb-1)));
 }
