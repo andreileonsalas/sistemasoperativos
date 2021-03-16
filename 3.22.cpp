@@ -34,7 +34,7 @@ int main(int argc, char **argv){
         /*child process*/
         char buffer[BUFFER_SIZE];
         memset(buffer,0,sizeof(char)*BUFFER_SIZE);
-        char *buffer_p = &buffer[0];
+        char *buffer_p = (char *)&buffer[0];
         if (argc == 1 || argc > 2){
             fprintf(stderr,"Pass invaild args!\n");
             shm_unlink(name);
