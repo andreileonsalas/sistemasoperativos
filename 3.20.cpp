@@ -32,16 +32,13 @@ int main()
     else printf("\nFailed to initialize data structure.\n");
 }
 
-/* Creates and initializes a data structure for representing pids;
- returns —1 if unsuccessful, 1 if successful */
 int allocate_map() {
     b = (unsigned char*)malloc((sz+cb-1)/cb * sizeof(char));
     if (b) return 1;
     return -1;
 }
 
-/* Allocates and returns a pid; returns -1
-if unable to allocate a pid (all pids are in use) */
+
 int allocate_pid() {
     int i = 0;
     int pid = b[i/cb] & (1 << (i & (cb-1)));
@@ -55,7 +52,7 @@ int allocate_pid() {
     return i+MIN_PID;
 }
 
-/* Releases a pid */
+
 void release_pid(int pid) {
     if (pid < 500) {
         printf("\nInvalid PID: It should lie between 500 and 3000.");
