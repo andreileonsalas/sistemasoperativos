@@ -8,6 +8,12 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+//how to compile
+//gcc 3.22.c -o 3.22;./3.22
+
+//how to run
+// ./3.22
+
 int main(int argc, char **argv){
     
     const int tam = 4096;

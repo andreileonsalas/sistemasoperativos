@@ -4,7 +4,7 @@
 
 
 //how to compile
-//gcc 3.21.c -o 3.21
+//gcc 3.21.c -o 3.21;./3.21
 
 //how to run
 // ./3.21
