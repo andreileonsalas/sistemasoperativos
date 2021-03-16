@@ -1,63 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
+#include <time.h>
+#include <stdbool.h>
 
-#define MIN_PID 500
-#define MAX_PID 3000
-#define cb CHAR_BIT
-// gcc 3.20.cpp -o 3.20
-int sz = MAX_PID - MIN_PID + 1;
+#define MIN_PID 300
+#define MAX_PID 5000
 
-unsigned char *b;
-
-int allocate_map();
+int get_random();
+int allocate_map(void);
 int allocate_pid();
-void release_pid(int pid);
+void release_pid();
 
-int main() 
-{
-    int map = allocate_map();
-    if (map == 1) {
-        printf("\nData Structure initialized.\n");
-        int id = 0, i = 0;
-        while (i < 15) {
-            int val = allocate_pid();
-            printf("\nProcess %d: pid = %d", i+1, val);
-            i++;
-        }
-        release_pid(503); printf("\nProcess 503 released.");
-        release_pid(505); printf("\nProcess 505 released.");
-        int val = allocate_pid(); printf("\nProcess %d : pid = %d\n", i+1, val);
+bool* pid_map;
+
+int main() {
+    // initiate pid map
+    if(allocate_map() == -1){
+        printf("unable to create the pid map\n");
     }
-    else printf("\nFailed to initialize data structure.\n");
-}
 
-int allocate_map() {
-    b = (unsigned char*)malloc((sz+cb-1)/cb * sizeof(char));
-    if (b) return 1;
-    return -1;
-}
+    // sample pid for feature release
+    int pid1, pid2;
 
-
-int allocate_pid() {
-    int i = 0;
-    int pid = b[i/cb] & (1 << (i & (cb-1)));
-    while (pid != 0) {
-        i++;
-        pid = b[i/cb] & (1 << (i & (cb-1)));
-        }
-
-    if (i+MIN_PID > MAX_PID) return -1;
-    b[i/cb] |= 1 << (i & (cb-1));
-    return i+MIN_PID;
-}
-
-
-void release_pid(int pid) {
-    if (pid < 500) {
-        printf("\nInvalid PID: It should lie between 500 and 3000.");
-        return;
+    // allocate pids
+    for(int i = 0; i < 1000; i ++){
+        int pid = allocate_pid();
+        if(i == 3) pid1 = pid;
+        if(i == 4) pid2 = pid;
+        printf("PID: %d\n", pid);
     }
-    int i = pid - MIN_PID;
-    b[i/cb] &= ~(1 << (i & (cb-1)));
+
+    // release pids
+    release_pid(pid1);
+    release_pid(1000);
+    release_pid(pid2);
+
+}
+
+int allocate_map(void){
+    srand(time(0));
+    pid_map = malloc(sizeof(bool) * MAX_PID); // yah, allocated extra 300 pid
+    return pid_map == NULL ? -1 : 1;
+}
+
+int allocate_pid(){
+    int pid = get_random();
+    while(pid_map[pid] == true){
+        pid = get_random();
+    }
+    pid_map[pid] = true;
+    return pid;
+}
+
+
+void release_pid(int pid){
+    if(pid_map[pid] == true){
+        pid_map[pid] = false;
+        printf("Release pid %d\n", pid);
+    } else {
+        printf("PID %d is not associated with any process\n", pid);
+    }
+}
+
+
+//to get a random number between max and min pid
+int get_random(){
+    return (rand() % (MAX_PID - MIN_PID + 1) + MIN_PID);
 }
