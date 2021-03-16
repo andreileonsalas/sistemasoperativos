@@ -5,7 +5,7 @@
 #define MIN_PID 500
 #define MAX_PID 3000
 #define cb CHAR_BIT
-
+// gcc 3.20.cpp -o 3.20
 int sz = MAX_PID - MIN_PID + 1;
 
 unsigned char *b;

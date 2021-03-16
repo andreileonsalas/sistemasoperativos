@@ -1,49 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h> 
-#include <wait.h> 
-#include <sys/mman.h> 
-#include <fcntl.h> 
+#include <unistd.h> /*For ftruncate*/
+#include <wait.h> /*For wait*/
+#include <sys/mman.h> /*For shm_open*/
+#include <fcntl.h> /*For 0_* constant*/
 #include <sys/stat.h>
 #include <sys/types.h>
 
 int main(int argc, char **argv){
-    
-    const int tam = 4096;
+    /*First create a shared memory area.*/
+    const int SIZE = 4096;
     const char *name ="OS";
-    const int tam_buffer = 1024;
+    const int BUFFER_SIZE = 1024;
     int shm_fd;
     void *ptr;
 
     shm_fd = shm_open(name,O_CREAT | O_RDWR,0666);
 
-    ftruncate(shm_fd,tam);
+    ftruncate(shm_fd,SIZE);/*Truncate the file*/
 
-    ptr = mmap(0,tam,PROT_WRITE,MAP_SHARED,shm_fd,0);
+    ptr = mmap(0,SIZE,PROT_WRITE,MAP_SHARED,shm_fd,0);/* Map the file into memory*/
 
-   
+    /*And now we create the process*/
     pid_t pid;
     pid = fork();
     if (pid < 0){
-        fprintf(stderr,"Error\n");
+        fprintf(stderr,"Fork Failed\n");
         shm_unlink(name);
         return 1;
     }
     else if (pid ==0){
-        
-        char buffer[tam_buffer];
-        memset(buffer,0,sizeof(char)*tam_buffer);
+        /*child process*/
+        char buffer[BUFFER_SIZE];
+        memset(buffer,0,sizeof(char)*BUFFER_SIZE);
         char *buffer_p = &buffer[0];
         if (argc == 1 || argc > 2){
-            fprintf(stderr,"Argumentos inválidos\n");
+            fprintf(stderr,"Pass invaild args!\n");
             shm_unlink(name);
             return 1;
         }
         int num = atoi(argv[1]);
         buffer_p += sprintf(buffer_p,"%d,",num); 
         while (num != 1){
-            if (num % 2 == 0){
+            if (num % 2 == 0)/*Even*/{
                 num = num / 2;
                 if (num == 1){
                     buffer_p += sprintf(buffer_p,"%d\n",num);
@@ -59,14 +59,14 @@ int main(int argc, char **argv){
             }
         }
         sprintf(ptr,"%s",buffer);
-        printf("Dato escrito a memoria.\n");
+        printf("The data to shared memory has written.\n");
     }
     else{
-        
+        /*Parent process*/
         wait(NULL);
-        printf("Leyendo memoria\n");
+        printf("Reading the shared memory\n");
         shm_fd = shm_open(name,O_RDONLY, 0666);
-        ptr = mmap(0,tam,PROT_READ,MAP_SHARED,shm_fd,0);
+        ptr = mmap(0,SIZE,PROT_READ,MAP_SHARED,shm_fd,0);
         printf("%s",(char *)ptr);
         shm_unlink(name);
     }
