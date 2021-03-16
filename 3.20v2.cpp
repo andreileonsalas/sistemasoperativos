@@ -3,10 +3,10 @@
 #include <time.h>
 #include <stdbool.h>
 
-#define MIN_PID 300
-#define MAX_PID 5000
+#define Minimo 300
+#define Maximo 5000
 
-int get_random();
+int generarAleatorio();
 int allocate_map(void);
 int allocate_pid();
 void release_pid();
@@ -39,14 +39,14 @@ int main() {
 
 int allocate_map(void){
     srand(time(0));
-    pid_map = malloc(sizeof(bool) * MAX_PID); // yah, allocated extra 300 pid
+    pid_map = malloc(sizeof(bool) * Maximo); // yah, allocated extra 300 pid
     return pid_map == NULL ? -1 : 1;
 }
 
 int allocate_pid(){
-    int pid = get_random();
+    int pid = generarAleatorio();
     while(pid_map[pid] == true){
-        pid = get_random();
+        pid = generarAleatorio();
     }
     pid_map[pid] = true;
     return pid;
@@ -63,7 +63,7 @@ void release_pid(int pid){
 }
 
 
-//to get a random number between max and min pid
-int get_random(){
-    return (rand() % (MAX_PID - MIN_PID + 1) + MIN_PID);
+//Generar un numero al azar entre el minimo y maximo
+int generarAleatorio(){
+    return (rand() % (Maximo - Minimo + 1) + Minimo);
 }
