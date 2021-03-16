@@ -58,7 +58,7 @@ int main(int argc, char **argv){
                 
             }
         }
-        //sprintf(ptr,"%s",buffer);
+        sprintf(ptr,"%s",buffer);
         printf("The data to shared memory has written.\n");
     }
     else{
