@@ -9,7 +9,7 @@
 #include <sys/types.h>
 
 //how to compile
-//gcc 3.22.c -o 3.22;./3.22
+//gcc 3.22.c -lrt -o 3.22;./3.22 24
 
 //how to run
 // ./3.22

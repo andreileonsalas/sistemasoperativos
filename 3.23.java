@@ -9,7 +9,7 @@ public class DateServer {
         Socket client = sock.accept();
         PrintWriter pout = new
         PrintWriter(client.getOutputStream(), true);
-        /* write the Date to the socket */
+        /* write the quote to the socket */
         pout.println("Las rosas son rojas, las cerezas azules, esta progra es bien lenta");
         /* close the socket and resume */
         /* listening for connections */
