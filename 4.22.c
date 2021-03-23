@@ -2,12 +2,6 @@
 //gcc -pthread -o 4.22 4.22.c
 //./4.22
 
-//https://github.com/SeanStaz/monteCarloMethod.c/blob/master/A3.c
-// Sean Staz
-// 10-28-2014
-// CSci_423
-
-/* Program to compute Pi using Monte Carlo methods */
 #include <stdio.h>
 #include <string.h>
 #include <pthread.h>
@@ -15,20 +9,19 @@
 #include <stdlib.h>
 
 int i         = 0;	
-int amtWanted = 0;
-int totalPts  = 0;
+int cantidaddepuntos = 0;
+int puntostotales  = 0;
 
 void *count(void *X)
 { 
-    /* initialize random numbers */
-    for (i=0; i < amtWanted; i++)
+    for (i=0; i < cantidaddepuntos; i++)
     {	
         double X = (double)rand() / RAND_MAX;
         double Y = (double)rand() / RAND_MAX;
         
         if (((X * X) + (Y * Y)) <= 1)
         {
-            totalPts++;
+            puntostotales++;
         }
     }
     return NULL;
@@ -43,14 +36,14 @@ int main()
     do
 	{
         printf("Please enter a positive number for the amount of points you would like to generate? \n");
-        scanf("%d", &amtWanted);  	
-	}while (amtWanted <= 0);
+        scanf("%d", &cantidaddepuntos);  	
+	}while (cantidaddepuntos <= 0);
   
     pthread_create(&thread, NULL, &count, NULL);
     pthread_join(thread, NULL);
     
-    double points = 4.0 * totalPts;
-    double pi = points / amtWanted;
-    printf("The approximate value of pi for the desired amount of points (%d) is: %f \n", amtWanted, pi);  
+    double points = 4.0 * puntostotales;
+    double pi = points / cantidaddepuntos;
+    printf("The approximate value of pi for the desired amount of points (%d) is: %f \n", cantidaddepuntos, pi);  
     return 0;
 }
