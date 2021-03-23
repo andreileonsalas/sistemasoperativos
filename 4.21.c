@@ -13,6 +13,7 @@ void *th()
 	for(i=0;i<n;i++)
 	{
 		scanf("%d",&arr[i]);
+		printf("\n checking for number",arr[i]);
 	}
 	for(i=0;i<n;i++)
 		{
