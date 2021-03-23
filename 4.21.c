@@ -19,7 +19,7 @@ void *th()
 	for(i=0;i<n;i++)
 	{
 		scanf("%d",&arr[i]);
-		printf("\n Revisando numero %d ",arr[i]);
+		//printf("\n Revisando numero %d ",arr[i]);
 	}
 	for(i=0;i<n;i++)
 		{
