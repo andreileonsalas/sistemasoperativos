@@ -73,7 +73,7 @@ main(int argc, char **argv)
       pthread_create(&id[i],NULL,worker,i);
    }
 
-   // wait
+   
    for (i = 0; i < thread_qty; i++)  {
       pthread_join(id[i],&work);
       printf("%d valores hechos\n",work);
