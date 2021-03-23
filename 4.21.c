@@ -16,7 +16,7 @@ void *th()
 	}
 	for(i=0;i<n;i++)
 		{
-			console.log("\n TH0 is in %d of %d",i,n);
+			printf("\n TH0 is in %d of %d",i,n);
 			sum=sum+arr[i];
 		}
 	average=sum/n;
@@ -29,7 +29,7 @@ void *th1()
 	int temp=arr[0];
 	for(int i=1;i<n;i++)
 		{
-			console.log("\n TH1 is in %d of %d",i,n);
+			printf("\n TH1 is in %d of %d",i,n);
 			if(temp>arr[i])
 			{
 			temp=arr[i];
@@ -44,7 +44,7 @@ void *th2()
 	int temp=arr[0];
 	for(int i=1;i<n;i++)
 		{
-			console.log("\n TH2 is in %d of %d",i,n);
+			printf("\n TH2 is in %d of %d",i,n);
 			if(temp<arr[i])
 			{
 			temp=arr[i];
