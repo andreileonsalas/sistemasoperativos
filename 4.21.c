@@ -1,5 +1,9 @@
 //https://gist.github.com/Jabiribn/e58bf13c678953891900e5f982b48037
 
+//how to run 
+//gcc -pthread -o 4.21 4.21.c
+//./4.21
+
 #include<stdio.h>
 #include<pthread.h>
 int arr[50],n,i;

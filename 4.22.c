@@ -1,3 +1,7 @@
+//how to run 
+//gcc -pthread -o 4.22 4.22.c
+//./4.22
+
 //https://github.com/SeanStaz/monteCarloMethod.c/blob/master/A3.c
 // Sean Staz
 // 10-28-2014

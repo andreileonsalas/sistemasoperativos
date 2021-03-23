@@ -1,5 +1,9 @@
 //https://github.com/twseptian/Operating-System-Codes/blob/master/4.18_omp_montecarlo.c
 
+//how to run 
+//gcc -fopenmp -o 4.23 4.23.c
+//./4.23 999
+
 /*
  * Name     : Tri Wanda Septian
  * 
