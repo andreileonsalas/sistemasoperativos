@@ -1,4 +1,7 @@
-//https://github.com/UnJaw/Programming_HW0/blob/master/Prime.java
+//how to run 
+//gcc -fopenmp -g -lpthread -lm -o 4.24 4.24.c
+//where 999 is the number to check and 4 is the number of threats
+//./4.24 999 4
 
 
 #include <stdio.h>
