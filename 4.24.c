@@ -93,7 +93,7 @@ main(int argc, char **argv)
    }
    
    // report results
-   nprimes = 1;
+   //nprimes = 1;
    for (i = 3; i <= n; i++)
       if (prime[i])  {
          nprimes++;
