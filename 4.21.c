@@ -1,5 +1,3 @@
-//https://gist.github.com/Jabiribn/e58bf13c678953891900e5f982b48037
-
 //how to run 
 //gcc -pthread -std=c99 -o 4.21 4.21.c
 //./4.21

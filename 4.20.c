@@ -1,5 +1,3 @@
-//https://gist.github.com/rsmahmud/409300a187341f87aa750aa5295d895c
-
 //how to run 
 //gcc -pthread -o 4.20 4.20.c
 //./4.20
@@ -37,17 +35,16 @@ void *threadRoutine(void *arg){
 
 
     if(id==-1){
-        puts("No PID available.");
+        puts("No hay PID.");
     }
     else{
-        printf("Thread [%3d] PID [%3d] Allocated\n",tid,id+MIN_PID);
-        //sleep for a random time between 1-10 seconds
+        printf("Hilo [%3d] PID [%3d] Acomodado\n",tid,id+MIN_PID);
         
         int r=1+rand()%30;
-        //uncomment next line to make the thread sleep for a random time
-        //sleep(r);
+        //para dormir segun el ejercicio
+        sleep(r);
 
-        printf("Thread [%3d] PID [%3d] Released after %d sec\n",tid,id+MIN_PID,r);
+        printf("Hilo [%3d] PID [%3d] Liberado despues de %d segundos\n",tid,id+MIN_PID,r);
         release_pid(id);
     }
     pthread_exit(NULL);
@@ -60,12 +57,11 @@ int main(){
     srand(time(NULL));
     for(i=0; i<NO_OF_P; i++){
         if(pthread_create(&process[i],NULL,threadRoutine,(void*)&i))
-            return -1*printf("Error in thread %d creation!!!\n",i);///return a negative integer     
+            return -1*printf("Error en la crecion del hilo %d \n",i);
     }
 
     for(i=0; i<NO_OF_P; i++)
         pthread_join(process[i],NULL);
     
-    //wait(NULL);
-    return 0*printf("\nSUCCESSFUL EXIT\n");
+    return 0*printf("\nSaliendo...\n");
 }
