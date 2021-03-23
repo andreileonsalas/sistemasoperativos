@@ -8,8 +8,10 @@ void *th()
 {
 	int sum=0;
 	float average;
-	printf("enter your number :=");
+	printf("Ingrese cuantos elementos va a ingresar:");
+	//%d es para decirle que lea un integer
 	scanf("%d",&n);
+	printf("Ahora ingrese cada valor, separado por un espacio:");
 	for(i=0;i<n;i++)
 	{
 		scanf("%d",&arr[i]);
