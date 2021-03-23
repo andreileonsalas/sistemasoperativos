@@ -6,24 +6,22 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <pthread.h>  // required for threads usage
+#include <pthread.h>  
 
 #define MAX_N 100000000
 #define MAX_THREADS 25
 
-// shared variables; in threaded programs, all global variables are
-// shared among all the threads; USE OF GLOBALS IS CENTRAL TO THREADED
-// PROGRAMMING
-int nthreads,  // number of threads (not counting main())
-    n,  // range to check for primeness
-    prime[MAX_N+1],  // in the end, prime[i] = 1 if i prime, else 0
-    nextbase;  // next sieve multiplier to be used
-// lock for the shared variable nextbase
+//definicion de variables
+int thread_qty,  
+    n,  
+    prime[MAX_N+1],  
+    nextbase;  
+	
+//
 pthread_mutex_t nextbaselock = PTHREAD_MUTEX_INITIALIZER;
-// ID structs for the threads
 pthread_t id[MAX_THREADS];
 
-// "crosses out" all odd multiples of k
+//multiplos de k
 void crossout(int k)
 {  int i;
    for (i = 3; i*k <= n; i += 2)  {
@@ -31,31 +29,26 @@ void crossout(int k)
    }
 }
 
-// each thread runs this routine
-void *worker(int tn)  // tn is the thread number (0,1,...)
-{  int lim,base,
-       work = 0;  // amount of work done by this thread
-   // no need to check multipliers bigger than sqrt(n)
+
+void *worker(int tn)  
+{  
+	//tn es el numero de thread
+	int lim,base,
+       work = 0;  // trabajo hecho por este thread
+   
    lim = sqrt(n);
    do  {
-      // get next sieve multiplier
-      // to avoid duplication across threads, change nextbase only with
-      // the lock locked
-      // lock the lock; if the lock is currently unlocked, this call
-      // will return immediately and the lock state will be locked; if
-      // on the other hand the lock is currently locked, this thread
-      // will "block" (i.e. the call will NOT return) until the thread
-      // that locked it does an unlock operation
+      
       pthread_mutex_lock(&nextbaselock);
       base = nextbase;
       nextbase += 2;
-      // unlock the lock
+  
       pthread_mutex_unlock(&nextbaselock);
       if (base <= lim)  {
-         // don't bother crossing out if base known composite
+       
          if (prime[base])  {
             crossout(base);
-            work++;  // log work done by this thread
+            work++;  // sumar trabajo hecho por este thread
          }
       }
       else return work; 
@@ -63,40 +56,34 @@ void *worker(int tn)  // tn is the thread number (0,1,...)
 }
 
 main(int argc, char **argv)
-{  int nprimes,  // number of primes found 
+{  	
+	int nprimes,  // cantidad de numeros primos encontrados
        i,work;
    n = atoi(argv[1]);
-   nthreads = atoi(argv[2]);
-   // mark all even numbers nonprime, and the rest "prime until
-   // shown otherwise"
+   thread_qty = atoi(argv[2]);
+ 
    for (i = 3; i <= n; i++)  {
       if (i%2 == 0) prime[i] = 0;
       else prime[i] = 1;
    }
    nextbase = 3;
-   // get threads started
-   for (i = 0; i < nthreads; i++)  {
-      // this call says create a thread, record its ID in the array
-      // id, and get the thread started executing the function worker(), 
-      // passing the argument i to that function
+ // inicializar threads
+   for (i = 0; i < thread_qty; i++)  {
+ 
       pthread_create(&id[i],NULL,worker,i);
    }
 
-   // wait for all done
-   for (i = 0; i < nthreads; i++)  {
-      // this call says wait until thread number id[i] finishes
-      // execution, and assign the return value of that thread to our
-      // local variable "work" here (to judge whether the work is evenly
-      // balanced among the threads)
+   // wait
+   for (i = 0; i < thread_qty; i++)  {
       pthread_join(id[i],&work);
       printf("%d values of base done\n",work);
    }
    
-   // report results
+   // imprimir resultados
    nprimes = 1;
    for (i = 3; i <= n; i++)
       if (prime[i])  {
          nprimes++;
       }
-   printf("the number of primes found was %d\n",nprimes);
+   printf("la cantidad de numeros primos encontrados es %d\n",nprimes);
 }
