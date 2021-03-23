@@ -76,7 +76,7 @@ main(int argc, char **argv)
    // wait
    for (i = 0; i < thread_qty; i++)  {
       pthread_join(id[i],&work);
-      printf("%d values of base done\n",work);
+      printf("%d valores hechos\n",work);
    }
    
    // imprimir resultados
