@@ -1,5 +1,9 @@
 //https://gist.github.com/rsmahmud/409300a187341f87aa750aa5295d895c
 
+//how to run 
+//gcc -pthread -o 4.20 4.20.c
+//./4.20
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
