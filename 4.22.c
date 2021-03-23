@@ -29,13 +29,13 @@ void *count(void *X)
 
 int main()
 {
-    printf("\n\nWelcome to Threaded Monte Carlo, by Sean Staz\n\n");
+    
     srand(time(NULL));
     pthread_t thread;
 
     do
 	{
-        printf("Please enter a positive number for the amount of points you would like to generate? \n");
+        printf("Ingrese un numero positivo para la cantidad de puntos que desea generar? \n");
         scanf("%d", &cantidaddepuntos);  	
 	}while (cantidaddepuntos <= 0);
   
@@ -44,6 +44,6 @@ int main()
     
     double points = 4.0 * puntostotales;
     double pi = points / cantidaddepuntos;
-    printf("The approximate value of pi for the desired amount of points (%d) is: %f \n", cantidaddepuntos, pi);  
+    printf("El valor aproximado de pi con la cantidad depuntos seleccionada (%d) es  %f \n", cantidaddepuntos, pi);  
     return 0;
 }
