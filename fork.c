@@ -6,7 +6,7 @@ int main()
 {
     pid_t  pid;
     int i = 0;
-        for (i=0; i < 3; i++) {
+        for (i=0; i < 4; i++) {
             pid = fork();
         if (pid = 0) fork();
             printf("Hola \n");
