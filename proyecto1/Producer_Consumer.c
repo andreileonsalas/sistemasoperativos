@@ -7,58 +7,47 @@
 #include <time.h>
 #include "buffer.h"
 
-// Global variables
+
 buffer_item buffer[BUFFER_SIZE];
 pthread_mutex_t mutex;
 sem_t full, empty;
 int count, in, out;
-
-// Function prototypes
-int insert_item(buffer_item item);
-int remove_item(buffer_item *item);
 void *consumer(void *param);
 void *producer(void *param);
+int insert_item(buffer_item item);
+int remove_item(buffer_item *item);
+
 
 int main(int argc, char **argv){
   if (argc != 4){
-    printf("ERROR: Provide exactly three arguments.\n");
+    printf("Ponga solamente 3 Argumentos\n");
     exit(1);
   }
-
-  // Retrieve command line arguments
-  const long int stime = strtol(argv[1], NULL, 0);
-  const long int num_producer = strtol(argv[2], NULL, 0);
-  const long int num_consumer = strtol(argv[3], NULL, 0);
-
-  // Initialize
+  const long int sleeptime = strtol(argv[1], NULL, 0);
+  const long int producersthreads = strtol(argv[2], NULL, 0);
+  const long int consumersthreads = strtol(argv[3], NULL, 0);
   int i;
   srand(time(NULL));
   pthread_mutex_init(&mutex, NULL);
-  sem_init(&empty, 0, BUFFER_SIZE); // All of buffer is empty
+  sem_init(&empty, 0, BUFFER_SIZE); 
   sem_init(&full, 0, 0);
-  count = in = out = 0;
-
-  // Create the producer and consumer threads
-  pthread_t producers[num_producer];
-  pthread_t consumers[num_consumer];
-  for(i = 0; i < num_producer; i++)
+  count = 0;
+  in = 0;
+  out = 0;
+  pthread_t producers[producersthreads];
+  pthread_t consumers[consumersthreads];
+  for(i = 0; i < producersthreads; i++)
     pthread_create(&producers[i], NULL, producer, NULL);
-  for(i = 0; i < num_consumer; i++)
+  for(i = 0; i < consumersthreads; i++)
     pthread_create(&consumers[i], NULL, consumer, NULL);
-
-  // Sleep before terminating
-  sleep(stime);
+  sleep(sleeptime);
   return 0;
 }
 
-// Insert item into buffer.
-//Returns 0 if successful, -1 indicating error
 int insert_item(buffer_item item){
   int success;
   sem_wait(&empty);
   pthread_mutex_lock(&mutex);
-
-  // Add item to buffer
   if( count != BUFFER_SIZE){
     buffer[in] = item;
     in = (in + 1) % BUFFER_SIZE;
@@ -67,22 +56,16 @@ int insert_item(buffer_item item){
   }
   else
     success = -1;
-
   pthread_mutex_unlock(&mutex);
   sem_post(&full);
-  
   return success;
 }
 
-// Remove an object from the buffer, placing it in item.
-// Returns 0 if successful, -1 indicating error
+
 int remove_item(buffer_item *item){
-  int success;
-  
+  int success;  
   sem_wait(&full);
   pthread_mutex_lock(&mutex);
-  
-  // Remove item from buffer to item
   if( count != 0){
     *item = buffer[out];
     out = (out + 1) % BUFFER_SIZE;
@@ -91,35 +74,34 @@ int remove_item(buffer_item *item){
   }
   else
     success = -1;
-
   pthread_mutex_unlock(&mutex);
   sem_post(&empty);
-  
   return success;
 }
 
 void *producer(void *param){
   buffer_item item;
-  while(1){
-    sleep(rand() % 5 + 1); // Sleep randomly between 1 and 5 seconds
-    
+  while(true){
+	/* sleep for a random period of time */
+    sleep(rand() % 20); 
+    /* generate a random number */
     item = rand();
     if(insert_item(item))
-      printf("Error occured\n");
+      printf("report error condition\n");
     else
-      printf("Producer produced %d\n", item);
+      printf("producer produced %d\n", item);
   }
 }
 
 
 void *consumer(void *param){
   buffer_item item;
-  while(1){
-    sleep(rand() % 5 + 1); // Sleep randomly between 1 and 5 seconds
-
+  while(true){
+	/* sleep for a random period of time */
+    sleep(rand() % 20);
     if(remove_item(&item))
-      printf("Error occured\n");
+      printf("report error condition\n");
     else
-      printf("Consumer consumed %d\n", item);
+      printf("consumer consumed %d\n", item);
   }
 }
