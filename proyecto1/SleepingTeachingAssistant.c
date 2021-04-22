@@ -6,6 +6,10 @@
 #include <stdlib.h>			
 #include <stdio.h>			
 
+//how to run : gcc -pthread SleepingTeachingAssistant.c -o Sleeping;./Sleeping
+
+
+
 pthread_t asistente;		//hilo del asistente
 pthread_t *estudiantes;		//N hilos para estudiantes
 

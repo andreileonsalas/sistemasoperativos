@@ -2,6 +2,8 @@
 #include <semaphore.h>
 #include <stdio.h>
  
+//how to run : gcc -pthread TheDiningPhilosophersProblem.c -o Dining;./Dining
+
 #define n 5
 #define Comiendo 0
 #define Hambriento 1
