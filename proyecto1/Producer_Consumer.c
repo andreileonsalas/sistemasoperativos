@@ -81,7 +81,7 @@ int remove_item(buffer_item *item){
 
 void *producer(void *param){
   buffer_item item;
-  while(;;){
+  while(1){
 	/* sleep for a random period of time */
     sleep(rand() % 20); 
     /* generate a random number */
@@ -96,7 +96,7 @@ void *producer(void *param){
 
 void *consumer(void *param){
   buffer_item item;
-  while(;;){
+  while(1){
 	/* sleep for a random period of time */
     sleep(rand() % 20);
     if(remove_item(&item))
