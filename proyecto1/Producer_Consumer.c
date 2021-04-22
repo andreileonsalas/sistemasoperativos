@@ -9,6 +9,7 @@
 #include <semaphore.h>
 #include <time.h>
 
+//How to run gcc -pthread Producer_Consumer.c -o pc;./pc 1000 4 4
 
 buffer_item buffer[BUFFER_SIZE];
 pthread_mutex_t mutex;
