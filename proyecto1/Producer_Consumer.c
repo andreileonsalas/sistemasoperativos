@@ -83,7 +83,7 @@ void *producer(void *param){
   buffer_item item;
   while(1){
 	/* sleep for a random period of time */
-    sleep(rand() % 20); 
+    sleep(rand() % 10); 
     /* generate a random number */
     item = rand();
     if(insert_item(item))
@@ -98,7 +98,7 @@ void *consumer(void *param){
   buffer_item item;
   while(1){
 	/* sleep for a random period of time */
-    sleep(rand() % 20);
+    sleep(rand() % 10);
     if(remove_item(&item))
       printf("report error condition\n");
     else
