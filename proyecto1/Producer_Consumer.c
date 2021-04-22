@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+
+#include "buffer.h"
+
 #include <pthread.h>
 #include <semaphore.h>
 #include <time.h>
-#include "buffer.h"
 
 
 buffer_item buffer[BUFFER_SIZE];
@@ -82,7 +84,8 @@ int remove_item(buffer_item *item){
 void *producer(void *param){
   buffer_item item;
   while(1){
-	/* sleep for a random period of time */
+	/* sleep for a ra
+	ndom period of time */
     sleep(rand() % 10); 
     /* generate a random number */
     item = rand();
