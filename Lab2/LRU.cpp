@@ -1,6 +1,7 @@
 #include <bits/stdc++.h> 
 #include <string>
 #include <iostream>
+#include <vector> 
 using namespace std;
 
 //how to run: g++ LRU.cpp -std=c++0x -o LRU.out; ./LRU.out
@@ -8,7 +9,7 @@ using namespace std;
 void pageFaultAlgorithm(int size, int* pages, int time, int length) 
 { 
 	int cnt = 0; 
-	vector -> arr; 
+	vector > arr; 
 	for (int i = 0; i < size; i++) { 
 		arr.push_back(make_pair(-1, time)); 
 	} 
