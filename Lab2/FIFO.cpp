@@ -1,3 +1,6 @@
+//how to run: g++ FIFO.cpp -std=c++0x -o FIFO.out; ./FIFO.out
+
+
 #include <bits/stdc++.h> 
 #include <string>
 #include <iostream>
