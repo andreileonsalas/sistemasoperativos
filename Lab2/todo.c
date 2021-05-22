@@ -19,6 +19,16 @@ int main()
     int i, ch;
     
     int n = 10;
+    pageRandomNumbers [0]= 1;
+    pageRandomNumbers [1]= 2;
+    pageRandomNumbers [2]= 3;
+    pageRandomNumbers [3]= 4;
+    pageRandomNumbers [4]= 5;
+    pageRandomNumbers [5]= 1;
+    pageRandomNumbers [6]= 1;
+    pageRandomNumbers [7]= 1;
+    pageRandomNumbers [8]= 1;
+    pageRandomNumbers [9]= 1;
     //page sequences size enter like 1 2 3 4 5 1 1 1 1 1
     printf("\nEnter sequence numbers:");
     for (i = 0; i < n; i++)  //accepting sequence
