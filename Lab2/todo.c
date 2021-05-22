@@ -32,7 +32,7 @@ int main()
     //page sequences size enter like 1 2 3 4 5 1 1 1 1 1
     printf("\nEnter sequence numbers:");
     for (i = 0; i < n; i++)  //accepting sequence
-        //scanf("%d", &pageRandomNumbers[i]); //take input of each page into pg array
+        scanf("%d", &pageRandomNumbers[i]); //take input of each page into pg array
     do
     { //Choose any of the option below
         printf("\n\tMENU\n");
