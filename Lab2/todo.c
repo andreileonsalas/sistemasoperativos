@@ -152,7 +152,7 @@ void optimal()
                                     if(temp == fr[j])
                                     {
                                                 flag = 1;
-                                                break; .
+                                                break; 
                                     }
                         }
 
@@ -216,7 +216,7 @@ void lru()
 
             for(i = 0; i < f; i++)
             {
-                        count[i] = 0; /
+                        count[i] = 0; 
                         fr[i] = -1;
             }
             for(i = 0; i < n; i++)
