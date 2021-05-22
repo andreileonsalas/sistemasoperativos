@@ -4,9 +4,7 @@
 
 
 // los numeros de pagina y los frames que solo se puede de 1 a 7
-int n,pageRandomNumbers[10], fr[7];
-//int pageRandomNumbers[10] = { 0, 3, 5, 4, 3, 1, 2, 8, 2, 2};
-//int pageRandomNumbers[10] = { 0, 3, 5, 4, 3, 1, 2, 8, 2, 2};
+int n, pageRandomNumbers[10], fr[7];
 //los 3 algoritmos
 void fifo();
 void optimal();
@@ -14,11 +12,12 @@ void lru();
 
 int main()
 {
-    // menu para poner los 3 algoritmos en 1 solo
+    // menu para poner los 3 algoritmos en 1
     srand(time(NULL));
     int i, ch;
-    
-    int n = 10;
+    printf("\nIngrese las paginas, del 0 al 9: ");
+    n = 0;
+    scanf("%d", &n);
     //page sequences size enter like 1 2 3 4 5 1 1 1 1 1
     printf("\nEnter sequence numbers:");
     for (i = 0; i < n; i++)  //accepting sequence
