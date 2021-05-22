@@ -4,8 +4,8 @@
 
 
 // los numeros de pagina y los frames que solo se puede de 1 a 7
-int n, fr[7];
-int pageRandomNumbers[10] = { 0, 3, 5, 4, 3, 1, 2, 8, 2, 2};
+int n,pageRandomNumbers[10], fr[7];
+//int pageRandomNumbers[10] = { 0, 3, 5, 4, 3, 1, 2, 8, 2, 2};
 //los 3 algoritmos
 void fifo();
 void optimal();
