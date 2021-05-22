@@ -1,4 +1,5 @@
 //how to run: g++ FIFO.cpp -std=c++0x -o FIFO.out; ./FIFO.out
+//how to run: g++ FIFO.cpp -std=c++0x -o FIFO.out; ./FIFO.out
 
 
 #include <bits/stdc++.h> 
