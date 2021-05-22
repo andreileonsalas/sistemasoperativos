@@ -80,7 +80,7 @@ void optimal()
         else if ((flag == 0) && (k == f))
         {
             fault++;
-            for (cnt = 0; cnt < f; cnt++) /
+            for (cnt = 0; cnt < f; cnt++) 
             {
                 current = fr[cnt];
                 for (c = i; c < n; c++) 
