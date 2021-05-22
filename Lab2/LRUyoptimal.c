@@ -2,6 +2,8 @@
 #include <time.h>
 #include <stdlib.h>
 
+//how to tun  git pull;gcc -std=c99 LRUyoptimal.c -o LRUyoptimal.out;./LRUyoptimal.out
+
 // los numeros de pagina y los frames que solo se puede de 1 a 7
 int n, pageRandomNumbers[10], fr[7];
 //los 3 algoritmos
