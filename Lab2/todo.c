@@ -149,7 +149,7 @@ void optimal()
                         temp = pg[i]; //same as above
                         for( j = 0; j < f; j++) //second step of the loop
                         {
-                                    if(temp == fr[j])/
+                                    if(temp == fr[j])
                                     {
                                                 flag = 1;
                                                 break; .
@@ -242,7 +242,7 @@ void lru()
                                     fault ++; //count the default
                                     for(cnt = 0; cnt < f; cnt++)
                                     {
-                                                current = fr[cnt]; /
+                                                current = fr[cnt]; 
                                                 for(c = i;c > 0; c--)
                                                 {
                                                             if(current != pg[c])
@@ -254,7 +254,7 @@ void lru()
                                     max = 0;
                                     for(m = 0; m < f; m++)
                                     {
-                                                if(count[m] > max) /
+                                                if(count[m] > max) 
                                                 {
                                                             max = count[m]; // is max  equal count
                                                             p = m; //then p store the loop times
