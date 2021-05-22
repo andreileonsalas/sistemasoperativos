@@ -30,7 +30,7 @@ void lru();
             printf("+++++++++++++++++++++++++++++++++\n");
             printf("\nEnter the number of pages: ");
              n = 0;
-            //enter number of pages you want like up to 10
+            enter number of pages you want like up to 10
             scanf("%d", &n);
             //page sequences size enter like 1 2 3 4 5 1 1 1 1 1
             printf("\nEnter sequence numbers:");
@@ -149,10 +149,10 @@ void optimal()
                         temp = pg[i]; //same as above
                         for( j = 0; j < f; j++) //second step of the loop
                         {
-                                    if(temp == fr[j])/
+                                    if(temp == fr[j])
                                     {
                                                 flag = 1;
-                                                break; .
+                                                break; 
                                     }
                         }
 
@@ -216,7 +216,7 @@ void lru()
 
             for(i = 0; i < f; i++)
             {
-                        count[i] = 0; /
+                        count[i] = 0; 
                         fr[i] = -1;
             }
             for(i = 0; i < n; i++)
@@ -242,7 +242,7 @@ void lru()
                                     fault ++; //count the default
                                     for(cnt = 0; cnt < f; cnt++)
                                     {
-                                                current = fr[cnt]; /
+                                                current = fr[cnt]; 
                                                 for(c = i;c > 0; c--)
                                                 {
                                                             if(current != pg[c])
@@ -254,7 +254,7 @@ void lru()
                                     max = 0;
                                     for(m = 0; m < f; m++)
                                     {
-                                                if(count[m] > max) /
+                                                if(count[m] > max) 
                                                 {
                                                             max = count[m]; // is max  equal count
                                                             p = m; //then p store the loop times
