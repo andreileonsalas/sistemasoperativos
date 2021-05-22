@@ -27,15 +27,22 @@ void lru();
           //  THE OPTION MENU
             srand( time (NULL));
             int i, ch;
+            int pg[12];
             printf("+++++++++++++++++++++++++++++++++\n");
             printf("\nEnter the number of pages: ");
-             n = 0;
+             n = 12;
             //enter number of pages you want like up to 10
-            scanf("%d", &n);
+            //scanf("%d", &n);
+            	for(i=0;i<12;i++)
+            {
+                pg[i]=rand()%10;	
+            }
+            
             //page sequences size enter like 1 2 3 4 5 1 1 1 1 1
             printf("\nEnter sequence numbers:");
             for( i=0; i < n ; i++ )                                   //accepting sequence
-                        scanf( "%d", &pg[i] );//take input of each page into pg array
+            
+                        //scanf( "%d", &pg[i] );//take input of each page into pg array
             do
             { //Choose any of the option below
                         printf("\n\tMENU\n");
