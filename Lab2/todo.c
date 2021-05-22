@@ -30,7 +30,7 @@ void lru();
             printf("+++++++++++++++++++++++++++++++++\n");
             printf("\nEnter the number of pages: ");
              n = 0;
-            enter number of pages you want like up to 10
+            //enter number of pages you want like up to 10
             scanf("%d", &n);
             //page sequences size enter like 1 2 3 4 5 1 1 1 1 1
             printf("\nEnter sequence numbers:");
