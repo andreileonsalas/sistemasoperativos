@@ -5,7 +5,7 @@
 
 // los numeros de pagina y los frames que solo se puede de 1 a 7
 int n, fr[7];
-int pageRandomNumbers[10] = { 0, 3, 5, 4, 3, 1, 2, 8, 2, 2, 9, 5, 4};
+int pageRandomNumbers[] = { 0, 3, 5, 4, 3, 1, 2, 8, 2, 2, 9, 5, 4};
 //los 3 algoritmos
 void fifo();
 void optimal();
@@ -16,7 +16,6 @@ int main()
     // menu para poner los 3 algoritmos en 1 solo
     srand(time(NULL));
     int i, ch;
-    pageRandomNumbers[] = { 0, 3, 5, 4, 3, 1, 2, 8, 2, 2, 9, 5, 4};
     printf("\nIngrese las paginas, del 0 al 9: ");
     int n = sizeof(pageRandomNumbers) /   sizeof(pageRandomNumbers[0]);
     scanf("%d", &n);
