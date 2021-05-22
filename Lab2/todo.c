@@ -24,7 +24,7 @@ int main()
         scanf("%d", &pageRandomNumbers[i]); // leer los numeros
     do
     { //Choose any of the option below
-        printf("\n\menu\n");
+        printf("\nmenu\n");
         printf("\n1)usar optimal");
         printf("\n2)usar LRU");
         printf("\n3)salir");
