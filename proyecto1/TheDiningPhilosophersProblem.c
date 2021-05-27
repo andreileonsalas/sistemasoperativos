@@ -51,7 +51,7 @@ void dejar_utensilios(int num_filosofo)
     sem_wait(&mutex);
     // asignar estado pensando
     estado[num_filosofo] = Pensando;
-    printf("El filosofo %d deja el utensilio %d and %d down\n", num_filosofo + 1, Izquierda + 1, num_filosofo + 1);
+    printf("El filosofo %d deja el utensilio %d y %d abajo\n", num_filosofo + 1, Izquierda + 1, num_filosofo + 1);
     printf("El filosofo %d esta pensando\n", num_filosofo + 1);
     probar(Izquierda);
     probar(Derecha);
