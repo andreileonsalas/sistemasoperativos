@@ -4,7 +4,7 @@
  
 //how to run : gcc -pthread TheDiningPhilosophersProblem.c -o Dining;./Dining
 
-#define n 5
+#define n 7
 #define Comiendo 0
 #define Hambriento 1
 #define Pensando 2
@@ -12,7 +12,7 @@
 #define Derecha (num_filosofo + 1) % n
  
 int estado[n];
-int filosofos[n] = { 0, 1, 2, 3, 4 }; //filosofos
+int filosofos[n] = { 0, 1, 2, 3, 4,5,6 }; //filosofos
  
 sem_t mutex;
 sem_t S[n];
